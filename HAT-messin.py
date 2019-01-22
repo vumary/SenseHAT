@@ -7,7 +7,7 @@ sense = SenseHat()
 #colors
 red = (255,0,0)
 white = (255,255,255)
-blue = (0, 0, 255)
+blue = (255, 0, 0)
 _blue = (30, 30, 200)
 
 #type variables to represent up down left and right
@@ -22,8 +22,10 @@ while(True):
   gyro = sense.get_orientation()
   pitch = gyro["pitch"]
   roll = gyro["roll"]
-  print("pitch: %s"  %pitch)
-  print("roll: %s" %roll)
+  accel = sense.get_accelerometer_raw()
+  _x = accel["x"]
+ #print("x: %s" %_x)
+  print("pitch: %s roll: %s" %(pitch, roll))
   if (pitch > 10 and pitch < 180 and x>0):
     #can't make trail bc sense.clear()
     sense.set_pixel(x, y, _blue)
